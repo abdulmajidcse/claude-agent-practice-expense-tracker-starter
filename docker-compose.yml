@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    container_name: expense-tracker
+    ports:
+      # host 5175 -> container 5173 (host 5173 is used by another project)
+      - "5175:5173"
+    volumes:
+      # Mount source for hot reload, but keep container's node_modules
+      - .:/app
+      - /app/node_modules
+    environment:
+      # Ensure file watching works reliably inside Docker
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev -- --host 0.0.0.0
