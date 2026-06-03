@@ -29,5 +29,16 @@ export function useTransactions() {
     ]);
   }, []);
 
-  return { transactions, totalIncome, totalExpenses, balance, addTransaction };
+  const deleteTransaction = useCallback((id) => {
+    setTransactions((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  return {
+    transactions,
+    totalIncome,
+    totalExpenses,
+    balance,
+    addTransaction,
+    deleteTransaction,
+  };
 }

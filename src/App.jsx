@@ -5,8 +5,14 @@ import { useTransactions } from './hooks/useTransactions';
 import './App.css';
 
 function App() {
-  const { transactions, totalIncome, totalExpenses, balance, addTransaction } =
-    useTransactions();
+  const {
+    transactions,
+    totalIncome,
+    totalExpenses,
+    balance,
+    addTransaction,
+    deleteTransaction,
+  } = useTransactions();
 
   return (
     <div className="app">
@@ -21,7 +27,7 @@ function App() {
 
       <TransactionForm onAdd={addTransaction} />
 
-      <Transactions transactions={transactions} />
+      <Transactions transactions={transactions} onDelete={deleteTransaction} />
     </div>
   );
 }

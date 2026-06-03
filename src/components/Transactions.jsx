@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react';
 import Filters from './Filters';
 import TransactionList from './TransactionList';
+import ConfirmModal from './ConfirmModal';
 
-function Transactions({ transactions }) {
+function Transactions({ transactions, onDelete }) {
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
+  const [pendingDelete, setPendingDelete] = useState(null);
 
   const filteredTransactions = useMemo(
     () =>
@@ -25,7 +27,21 @@ function Transactions({ transactions }) {
         onTypeChange={setFilterType}
         onCategoryChange={setFilterCategory}
       />
-      <TransactionList transactions={filteredTransactions} />
+      <TransactionList
+        transactions={filteredTransactions}
+        onRequestDelete={setPendingDelete}
+      />
+
+      {pendingDelete && (
+        <ConfirmModal
+          message={`Delete "${pendingDelete.description}"?`}
+          onConfirm={() => {
+            onDelete(pendingDelete.id);
+            setPendingDelete(null);
+          }}
+          onCancel={() => setPendingDelete(null)}
+        />
+      )}
     </div>
   );
 }
