@@ -9,11 +9,11 @@ Starter project for a Claude Code course. It is a deliberately rough single-file
 ## Commands
 
 ```bash
-npm install        # install deps
-npm run dev        # Vite dev server at http://localhost:5173
-npm run build      # production build to dist/
-npm run preview    # serve the production build
-npm run lint       # ESLint over the repo
+docker compose exec app npm install        # install deps
+docker compose exec app npm run dev        # Vite dev server at http://localhost:5173
+docker compose exec app npm run build      # production build to dist/
+docker compose exec app npm run preview    # serve the production build
+docker compose exec app npm run lint       # ESLint over the repo
 ```
 
 There is no test runner configured.
