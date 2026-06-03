@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 function Summary({ totalIncome, totalExpenses, balance }) {
   return (
     <div className="summary">
@@ -17,4 +19,4 @@ function Summary({ totalIncome, totalExpenses, balance }) {
   );
 }
 
-export default Summary;
+export default memo(Summary);
